@@ -6,18 +6,39 @@ export const CartSlice = createSlice({
     items: [], // Initialize items as an empty array
   },
   reducers: {
+    // Reducer to handle adding a product to the cart
     addItem: (state, action) => {
-    
+      const { name, image, cost } = action.payload; // Destructure product details from the action payload
+      // Check if the item already exists in the cart by comparing names
+      const existingItem = state.items.find(item => item.name === name);
+      if (existingItem) {
+        // If item already exists in the cart, increase its quantity
+        existingItem.quantity++;
+      } else {
+        // If item does not exist, add it to the cart with quantity 1
+        state.items.push({ name, image, cost, quantity: 1 });
+      }
     },
-    removeItem: (state, action) => {
-    },
-    updateQuantity: (state, action) => {
 
-    
+    // Reducer to handle completely removing an item from the cart based on its name
+    removeItem: (state, action) => {
+      state.items = state.items.filter(item => item.name !== action.payload);
+    },
+
+    // Reducer to handle updating the quantity of a specific item in the cart
+    updateQuantity: (state, action) => {
+      const { name, quantity } = action.payload; // Destructure the product name and new quantity from the action payload
+      // Find the item in the cart that matches the given name
+      const itemToUpdate = state.items.find(item => item.name === name);
+      if (itemToUpdate) {
+        itemToUpdate.quantity = quantity; // If the item is found, update its quantity to the new value
+      }
     },
   },
 });
 
+// Export the action creators to be dispatched in ProductList.jsx and CartItem.jsx
 export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
 
+// Export the reducer as default to be registered in store.js
 export default CartSlice.reducer;
