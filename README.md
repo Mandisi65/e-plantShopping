@@ -23,5 +23,4 @@ This project represents the cumulative capstone for Module 4, synthesizing state
 - **Deployment Platform:** GitHub Pages
 
 ## Deployment Link
-*Once deployed via GitHub Pages, insert your live URL link below:*
-👉 [Live Application Link](https://mandisi65.github.io/e-plantShopping/)
+*Once deployed via GitHub Pages, insert your live URL link below:* [Live Application Link](https://mandisi65.github.io/e-plantShopping/)
